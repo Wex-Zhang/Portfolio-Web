@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>设计作品集 | UI/UX Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header: Name left, Nav right -->
+  <nav class="nav">
+    <a href="#" class="nav-logo">Your Name</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#fun">Fun</a></li>
+      <li><a href="#info">Info</a></li>
+      <li><a href="#" class="nav-resume">Resume</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="菜单">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Hero: Left-aligned intro, lots of whitespace -->
+  <header class="hero">
+    <div class="container hero-container">
+      <p class="hero-intro-line">
+        <span class="hero-name-highlight">Your Name</span> is a designer at <a href="#">Company</a>.
+      </p>
+      <p class="hero-desc">
+        He designs digital products with immersive technology. Storytelling and prototyping is his jam. Past: <em><a href="#">TikTok</a></em>, <em><a href="#">Apple</a></em>.
+      </p>
+      <p class="hero-action">
+        See him in <a href="#work">Action</a>
+      </p>
+      <p class="hero-reels">
+        <a href="#">General Reel</a><br>
+        <a href="#">Project Reel</a>
+      </p>
+      <p class="hero-past">Previously worked at Apple, Pico, Blind.</p>
+    </div>
+  </header>
+
+  <!-- Work: 2x2 grid with visual project cards -->
+  <section id="work" class="section work">
+    <div class="work-grid">
+      <a href="#" class="work-card">
+        <div class="work-card-bg work-card-bg-1"></div>
+        <div class="work-card-overlay">
+          <span class="work-card-title">Video generation</span>
+          <span class="work-card-product">Dream Machine</span>
+          <span class="work-card-company">Lumalabs.ai</span>
+          <span class="work-card-tag">Professional 2024</span>
+        </div>
+      </a>
+      <a href="#" class="work-card">
+        <div class="work-card-bg work-card-bg-2"></div>
+        <div class="work-card-overlay">
+          <span class="work-card-title">Make filters on TikTok</span>
+          <span class="work-card-product">Effect House</span>
+          <span class="work-card-company">TikTok USA</span>
+          <span class="work-card-tag">Professional 2020-2021</span>
+        </div>
+      </a>
+      <a href="#" class="work-card">
+        <div class="work-card-bg work-card-bg-3"></div>
+        <div class="work-card-overlay">
+          <span class="work-card-title">Examine iPhone in 3D</span>
+          <span class="work-card-product">Apple.com</span>
+          <span class="work-card-company">Apple MARCOM</span>
+          <span class="work-card-tag">Professional 2021-2023</span>
+        </div>
+      </a>
+      <a href="#" class="work-card">
+        <div class="work-card-bg work-card-bg-4"></div>
+        <div class="work-card-overlay">
+          <span class="work-card-title">Home of Virtual Avatars</span>
+          <span class="work-card-product">Hyper.online</span>
+          <span class="work-card-company">Hyper</span>
+          <span class="work-card-tag">Professional 2022-2023</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Info -->
+  <section id="info" class="section info">
+    <div class="container">
+      <div class="info-content">
+        <h2 class="info-name">Your Name</h2>
+        <p class="info-version">Portfolio 2025</p>
+        <p class="info-role">Product Designer · UI/UX Designer</p>
+        <p class="info-rights">All rights reserved.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer - Let's chat -->
+  <footer id="contact" class="footer">
+    <div class="container">
+      <h2 class="footer-chat">Let's chat</h2>
+      <a href="mailto:hi@example.com" class="footer-email">hi at example.com</a>
+      <div class="footer-links">
+        <a href="#" target="_blank" rel="noopener">Resume</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://twitter.com" target="_blank" rel="noopener">Twitter</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
