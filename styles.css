@@ -195,13 +195,13 @@ a:hover {
   transform: scale(1.03);
 }
 
-/* Placeholder backgrounds - replace with real images via background-image */
+/* Project backgrounds - 酷渲云 AI/电商 · 飞利浦 智慧家居 */
 .work-card-bg-1 {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 40%, #0ea5e9 100%);
 }
 
 .work-card-bg-2 {
-  background: linear-gradient(135deg, #2d1b4e 0%, #4a2c7a 50%, #6b3fa0 100%);
+  background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #64748b 100%);
 }
 
 .work-card-bg-3 {
@@ -218,11 +218,24 @@ a:hover {
   left: 0;
   right: 0;
   padding: 1.5rem 2rem;
-  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  background: linear-gradient(transparent, rgba(0,0,0,0.85));
   color: var(--color-text);
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+}
+
+.work-card-overlay::after {
+  content: 'View case study →';
+  font-size: 0.8rem;
+  color: var(--color-text-dim);
+  margin-top: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.work-card:hover .work-card-overlay::after {
+  opacity: 1;
 }
 
 .work-card-title {
