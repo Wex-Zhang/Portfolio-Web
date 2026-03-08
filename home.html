@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandro Kozmanishvili — Empathy & Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+
+    <div class="corner-index tl trigger-nav">S</div>
+    <div class="corner-index tr trigger-nav">K</div>
+    <div class="corner-index bl trigger-nav">H</div>
+    <div class="corner-index br trigger-nav">U</div>
+
+    <div id="nav-overlay">
+        <div class="nav-content">
+            <div class="nav-item">Human Stories</div>
+            <div class="nav-item">Design Process</div>
+            <div class="nav-item">Case Studies</div>
+            <div class="nav-item">Values</div>
+            <div class="nav-item trigger-nav-close" style="font-size: 1rem; margin-top: 2rem; color: var(--secondary-color);">[ Close ]</div>
+        </div>
+    </div>
+
+    <main style="display: contents;">
+        <div id="canvas-zone">
+            <canvas id="ascii-canvas"></canvas>
+            <div class="hero-text">
+                <div class="hero-headline">Empathy-Driven <br>Human Systems</div>
+                <div class="hero-subline">Building tools that honor the user's journey.</div>
+            </div>
+        </div>
+
+        <div id="panel-zone">
+            <div class="panel-col">
+                <div>
+                    <div class="meta-line">
+                        <span>Sandro Kozmanishvili</span>
+                        <span id="timestamp">--:--:--</span>
+                    </div>
+                    <p class="bio-text">
+                        Product designer committed to user-centered thinking. I craft digital experiences by listening first, ensuring every pixel serves a human need.
+                    </p>
+                </div>
+                <div style="font-size: 0.9rem; color: var(--secondary-color); font-weight: 500;">
+                    Currently designing for connection and accessibility.
+                </div>
+            </div>
+
+            <div class="panel-col">
+                <ul class="link-list">
+                    <li><a href="#" id="link-projects">Portfolio</a></li>
+                    <li><a href="#">Collaborate</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Reading List</a></li>
+                </ul>
+                <div class="colophon">
+                    Designed with care in Tbilisi.<br>
+                    Typeface: DM Sans (Humanist).
+                </div>
+            </div>
+
+            <div class="panel-col" style="text-align: right; justify-content: space-between;">
+                <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent-color);">© 2025 Empathy Lab</div>
+                <div class="telemetry">
+                    LATENCY: <span id="render-ms">0.0</span>ms<br>
+                    X: <span id="mouse-x">0</span> Y: <span id="mouse-y">0</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="home.js"></script>
+</body>
+</html>
