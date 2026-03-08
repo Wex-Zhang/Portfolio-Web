@@ -1,118 +1,343 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>设计作品集 | UI/UX Designer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandro Kozmanishvili — Empathy & Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="projects.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .page-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .page-home {
+            z-index: 2;
+            background: #fdfaf6;
+        }
+
+        .page-projects {
+            z-index: 1;
+            background: #ffffff;
+            opacity: 0;
+            filter: blur(20px);
+            transform: translateY(100%);
+            pointer-events: none;
+        }
+
+        .page-home.transitioning {
+            transform: translateY(-100%);
+            transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .page-projects.visible {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+            pointer-events: auto;
+            transition: opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1),
+                        filter 1.2s cubic-bezier(0.23, 1, 0.32, 1),
+                        transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* Override projects page initial animation since we handle it here */
+        .page-projects body {
+            animation: none;
+        }
+    </style>
 </head>
 <body>
-  <!-- Header: Name left, Nav right -->
-  <nav class="nav">
-    <a href="#" class="nav-logo">Zhang Wenxu</a>
-    <ul class="nav-links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#fun">Fun</a></li>
-      <li><a href="#info">Info</a></li>
-      <li><a href="#" class="nav-resume">Resume</a></li>
-    </ul>
-    <button class="nav-toggle" aria-label="菜单">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </nav>
+    <div class="page-container">
+        <!-- Home Page -->
+        <div class="page page-home" id="page-home">
+            <div id="cursor-dot"></div>
+            <div id="cursor-outline"></div>
 
-  <!-- Hero: Left-aligned intro, lots of whitespace -->
-  <header class="hero">
-    <div class="container hero-container">
-      <p class="hero-intro-line">
-        <span class="hero-name-highlight">Zhang Wenxu</span> is a designer at <a href="#">Real Messenger (Nasdaq Listed)</a>.
-      </p>
-      <p class="hero-desc">
-        He designs digital products with immersive technology. Storytelling and prototyping is his jam. Past: <em><a href="#">Haier</a></em>, <em><a href="#">Phillips China</a></em>.
-      </p>
-      <p class="hero-action">
-        See him in <a href="#work">Action</a>
-      </p>
-      <p class="hero-reels">
-        <a href="#">General Reel</a><br>
-        <a href="#">Project Reel</a>
-      </p>
-      <p class="hero-past">Previously worked at Haier, Phillips China.</p>
-    </div>
-  </header>
+            <div class="corner-index tl trigger-nav">S</div>
+            <div class="corner-index tr trigger-nav">K</div>
+            <div class="corner-index bl trigger-nav">H</div>
+            <div class="corner-index br trigger-nav">U</div>
 
-  <!-- Work: 2x2 grid with visual project cards -->
-  <section id="work" class="section work">
-    <div class="work-grid">
-      <a href="project-kuxuan.html" class="work-card">
-        <div class="work-card-bg work-card-bg-1"></div>
-        <div class="work-card-overlay">
-          <span class="work-card-title">电商快人一步 · 一键 AI 产品图</span>
-          <span class="work-card-product">酷渲云 APP UI/UX Design</span>
-          <span class="work-card-company">酷渲云</span>
-          <span class="work-card-tag">实习项目 · Internship</span>
+            <div id="nav-overlay">
+                <div class="nav-content">
+                    <div class="nav-item">Human Stories</div>
+                    <div class="nav-item">Design Process</div>
+                    <div class="nav-item">Case Studies</div>
+                    <div class="nav-item">Values</div>
+                    <div class="nav-item trigger-nav-close" style="font-size: 1rem; margin-top: 2rem; color: var(--secondary-color);">[ Close ]</div>
+                </div>
+            </div>
+
+            <main style="display: contents;">
+                <div id="canvas-zone">
+                    <canvas id="ascii-canvas"></canvas>
+                    <div class="hero-text">
+                        <div class="hero-headline">Empathy-Driven <br>Human Systems</div>
+                        <div class="hero-subline">Building tools that honor the user's journey.</div>
+                    </div>
+                </div>
+
+                <div id="panel-zone">
+                    <div class="panel-col">
+                        <div>
+                            <div class="meta-line">
+                                <span>Sandro Kozmanishvili</span>
+                                <span id="timestamp">--:--:--</span>
+                            </div>
+                            <p class="bio-text">
+                                Product designer committed to user-centered thinking. I craft digital experiences by listening first, ensuring every pixel serves a human need.
+                            </p>
+                        </div>
+                        <div style="font-size: 0.9rem; color: var(--secondary-color); font-weight: 500;">
+                            Currently designing for connection and accessibility.
+                        </div>
+                    </div>
+
+                    <div class="panel-col">
+                        <ul class="link-list">
+                            <li><a href="#" id="link-projects">Portfolio</a></li>
+                            <li><a href="#">Collaborate</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                            <li><a href="#">Reading List</a></li>
+                        </ul>
+                        <div class="colophon">
+                            Designed with care in Tbilisi.<br>
+                            Typeface: DM Sans (Humanist).
+                        </div>
+                    </div>
+
+                    <div class="panel-col" style="text-align: right; justify-content: space-between;">
+                        <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent-color);">© 2025 Empathy Lab</div>
+                        <div class="telemetry">
+                            LATENCY: <span id="render-ms">0.0</span>ms<br>
+                            X: <span id="mouse-x">0</span> Y: <span id="mouse-y">0</span>
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
-      </a>
-      <a href="project-philips.html" class="work-card">
-        <div class="work-card-bg work-card-bg-2"></div>
-        <div class="work-card-overlay">
-          <span class="work-card-title">扫拖机器人板块体验设计升级</span>
-          <span class="work-card-product">飞利浦智慧家 2.0</span>
-          <span class="work-card-company">Philips</span>
-          <span class="work-card-tag">实习项目 · Internship</span>
-        </div>
-      </a>
-      <a href="#" class="work-card">
-        <div class="work-card-bg work-card-bg-3"></div>
-        <div class="work-card-overlay">
-          <span class="work-card-title">Examine iPhone in 3D</span>
-          <span class="work-card-product">Apple.com</span>
-          <span class="work-card-company">Apple MARCOM</span>
-          <span class="work-card-tag">Professional 2021-2023</span>
-        </div>
-      </a>
-      <a href="#" class="work-card">
-        <div class="work-card-bg work-card-bg-4"></div>
-        <div class="work-card-overlay">
-          <span class="work-card-title">Home of Virtual Avatars</span>
-          <span class="work-card-product">Hyper.online</span>
-          <span class="work-card-company">Hyper</span>
-          <span class="work-card-tag">Professional 2022-2023</span>
-        </div>
-      </a>
-    </div>
-  </section>
 
-  <!-- Info -->
-  <section id="info" class="section info">
-    <div class="container">
-      <div class="info-content">
-        <h2 class="info-name">Zhang Wenxu</h2>
-        <p class="info-version">Portfolio 2025</p>
-        <p class="info-role">Product Designer · UI/UX Designer</p>
-        <p class="info-rights">All rights reserved.</p>
-      </div>
-    </div>
-  </section>
+        <!-- Projects Page -->
+        <div class="page page-projects" id="page-projects">
+            <nav class="nav">
+                <div class="nav-logo">
+                    <span class="logo-icon">M</span>
+                    <span class="logo-text">MUN.</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link active">Projects</a></li>
+                    <li><a href="#" class="nav-link">About</a></li>
+                    <li><a href="#" class="nav-button">O Get in touch</a></li>
+                </ul>
+            </nav>
 
-  <!-- Footer - Let's chat -->
-  <footer id="contact" class="footer">
-    <div class="container">
-      <h2 class="footer-chat">Let's chat</h2>
-      <a href="mailto:hi@example.com" class="footer-email">hi at example.com</a>
-      <div class="footer-links">
-        <a href="#" target="_blank" rel="noopener">Resume</a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://twitter.com" target="_blank" rel="noopener">Twitter</a>
-      </div>
-    </div>
-  </footer>
+            <main class="projects-main">
+                <div class="projects-grid">
+                    <!-- Project 1: Counsel AI -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-image-placeholder project-1">
+                                <div class="mockup-laptop">
+                                    <div class="laptop-screen">
+                                        <div class="screen-content">
+                                            <div class="screen-header">Doctor+</div>
+                                            <div class="screen-profiles">
+                                                <div class="profile-circle"></div>
+                                                <div class="profile-circle"></div>
+                                                <div class="profile-circle"></div>
+                                                <div class="profile-circle"></div>
+                                            </div>
+                                            <div class="screen-buttons">
+                                                <div class="screen-btn"></div>
+                                                <div class="screen-btn"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-category">Virtual Healthcare / Feature Design</div>
+                            <div class="project-title">Counsel AI</div>
+                        </div>
+                    </div>
 
-  <script src="script.js"></script>
+                    <!-- Project 2: Sphere -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-image-placeholder project-2">
+                                <div class="mockup-phone">
+                                    <div class="phone-screen">
+                                        <div class="phone-content">
+                                            <div class="phone-shape shape-1"></div>
+                                            <div class="phone-shape shape-2"></div>
+                                            <div class="phone-shape shape-3"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-category">Lifestyle App / USP and Feature Design</div>
+                            <div class="project-title">Sphere</div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Sow Fertility -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-image-placeholder project-3">
+                                <div class="mockup-tablet">
+                                    <div class="tablet-screen">
+                                        <div class="tablet-content">
+                                            <div class="tablet-left">
+                                                <div class="tablet-form">
+                                                    <div class="form-field"></div>
+                                                    <div class="form-field"></div>
+                                                    <div class="form-button"></div>
+                                                </div>
+                                            </div>
+                                            <div class="tablet-right">
+                                                <div class="tablet-shape"></div>
+                                                <div class="tablet-shape"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-category">
+                                Fertility Tracking Platform / User Flow & UI Design
+                                <span class="project-arrow">→</span>
+                            </div>
+                            <div class="project-title">Sow Fertility</div>
+                        </div>
+                    </div>
+
+                    <!-- Additional project cards -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-image-placeholder project-4"></div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-category">Product Design / UI/UX</div>
+                            <div class="project-title">Project Four</div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-image-placeholder project-5"></div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-category">Brand Identity / Visual Design</div>
+                            <div class="project-title">Project Five</div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-image-placeholder project-6"></div>
+                        </div>
+                        <div class="project-info">
+                            <div class="project-category">Web Design / Development</div>
+                            <div class="project-title">Project Six</div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="home.js"></script>
+    <script src="projects.js"></script>
+    <script>
+        // Transition management
+        const pageHome = document.getElementById('page-home');
+        const pageProjects = document.getElementById('page-projects');
+        let isTransitioning = false;
+
+        function transitionToProjects() {
+            if (isTransitioning) return;
+            isTransitioning = true;
+
+            // Start transition
+            pageHome.classList.add('transitioning');
+            
+            // Small delay to ensure home page starts transitioning first
+            setTimeout(() => {
+                pageProjects.classList.add('visible');
+            }, 50);
+
+            // After transition completes
+            setTimeout(() => {
+                pageHome.style.display = 'none';
+                isTransitioning = false;
+            }, 1200);
+        }
+
+        // Expose function globally
+        window.transitionToProjects = transitionToProjects;
+
+        // Listen for click on Portfolio link
+        const linkProjects = document.getElementById('link-projects');
+        if (linkProjects) {
+            linkProjects.addEventListener('click', (e) => {
+                e.preventDefault();
+                transitionToProjects();
+            });
+        }
+
+        // Listen for scroll down on home page
+        let scrollTimeout;
+        pageHome.addEventListener('wheel', (e) => {
+            if (e.deltaY > 0 && !isTransitioning) {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    transitionToProjects();
+                }, 100);
+            }
+        }, { passive: true });
+
+        // Also handle scroll at bottom of home page
+        let lastScrollTop = 0;
+        pageHome.addEventListener('scroll', () => {
+            const scrollTop = pageHome.scrollTop;
+            const scrollHeight = pageHome.scrollHeight;
+            const clientHeight = pageHome.clientHeight;
+            
+            // If scrolled to bottom or near bottom
+            if (scrollTop + clientHeight >= scrollHeight - 10 && !isTransitioning) {
+                transitionToProjects();
+            }
+            lastScrollTop = scrollTop;
+        });
+    </script>
 </body>
 </html>
